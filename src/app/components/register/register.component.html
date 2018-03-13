@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="row">
+		<div class="span5"></div>
+		<div class="span2">
+		    <form novalidate [formGroup]="registerForm" class="form-signup" (ngSubmit)="register()">
+		        <h3 class="form-signin-heading">Please sign up</h3>
+		        <fieldset formGroupName="fullname">
+		        	<legend>Full Name</legend>
+    				<div class="control-group" [ngClass]="{
+    					'error': firstname.invalid && (firstname.dirty || firstname.touched),
+    					'success': firstname.valid && (firstname.dirty || firstname.touched)
+    				}">
+    					<label for="firstname" class="control-label">First Name</label>
+    					<div class="controls" for="firstname">
+		        			<input type="text" class="input-block-level" id="firstname" formControlName="firstname" required>
+		        		</div>
+		        		<span class="help-inline" 
+		        		*ngIf="firstname.errors && (firstname.dirty || firstname.touched)">
+		        			<p *ngIf="firstname.errors.required">Firstname is required</p>
+		        		</span>
+		        	</div>	
+		        	<div class="control-group" [ngClass]="{
+    					'error': lastname.invalid && (lastname.dirty || lastname.touched),
+    					'success': lastname.valid && (lastname.dirty || lastname.touched)
+    				}">
+		        		<label for="lastname" class="control-label">Last Name</label>
+		        		<div class="controls">
+		        			<input type="text" class="input-block-level" id="lastname" formControlName="lastname" required>
+		        		</div>
+		        		<span class="help-inline" 
+		        		*ngIf="lastname.errors && (lastname.dirty || lastname.touched)">
+		        			<p *ngIf="lastname.errors.required">Lastname is required</p>
+		        		</span>	
+		        	</div>	
+		        </fieldset>
+		        <fieldset formGroupName="credentials">
+		        	<legend>Credentials</legend>
+    				<div class="control-group" 
+    					[ngClass]="{
+    					'error': username.invalid  && (username.dirty || username.touched),
+    					'success': username.valid && (username.dirty || username.touched)
+    				}">
+    					<label for="username" class="control-label">Username</label>
+    					<div class="controls">
+		        			<input type="text" class="input-block-level" id="username" formControlName="username" required>
+		        		</div>
+		        		<span class="help-inline" 
+		        		*ngIf="username.errors && (username.dirty || username.touched)">
+		        			<p *ngIf="username.errors.required">Username is required</p>
+		        			<p *ngIf="username.errors && username.errors.alreadyexists">This username is already taken!</p>
+		        		</span>	
+		        	</div>
+		        	<div class="control-group" [ngClass]="{
+	    				'error': password.invalid && (password.dirty || password.touched),
+	    				'success': password.valid && (password.dirty || password.touched)
+	    			}">
+		        		<label for="password" class="control-label">Password</label>
+		        		<div class="controls">
+		        			<input type="password" class="input-block-level" id="password" formControlName="password" required>
+		        		</div>
+		        		<span class="help-inline" 
+			        		*ngIf="password.errors && (password.dirty || password.touched)">
+		        			<p *ngIf="password.errors.required">Password is required</p>
+		        			<p *ngIf="password.errors.minlength">Password is minimum {{password.errors.minlength.requiredLength}} characters</p>
+		        			<p *ngIf="password.errors.maxlength">Password is maximum {{password.errors.maxlength.requiredLength}} charaters</p>
+			        	</span>	
+		        	</div>
+		        </fieldset>
+		        <div class="control-group text-center">
+		        	<button class="btn btn-medium btn-primary" type="submit" [disabled]="!registerForm.valid">Sign up</button>
+		        	<a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+		        </div>
+		    </form>
+	    </div>
+	    <div class="span5"></div>
+	</div>    
+</div>

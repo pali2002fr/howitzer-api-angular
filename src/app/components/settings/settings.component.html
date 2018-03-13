@@ -1,0 +1,14 @@
+<ul class="nav nav-pills pull-right" *ngIf="displaySettings">
+	<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+		<a routerLink="/">Home</a>
+	</li>
+    <li routerLinkActive="active">
+    	<a routerLink="/history">History</a>
+    </li>
+    <li routerLinkActive="active">
+    	<a routerLink="/profile">Profile</a>
+    </li>
+    <li routerLinkActive="active">
+    	<a routerLink="/logout">Logout</a>
+    </li>
+</ul>

@@ -1,0 +1,16 @@
+<div *ngIf="message" 
+[ngClass]="{
+	'alert': message,
+	'alert-success': message.type === 'success',
+	'alert-danger': message.type === 'error',
+	'alert-warning': message.type === 'warning'
+}">	
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<span *ngIf="message.type === 'success'">
+		{{message.text}}
+	</span>
+	<span *ngIf="message.type === 'error' || message.type === 'warning'">
+		{{message.text.error}}
+	</span>
+	
+</div>

@@ -1,0 +1,9 @@
+<div id="shot_result" module-id="shot-result">
+  	<h3 *ngIf="hit">Congratulations, You hit the target</h3>
+	<p class="target-missed" *ngIf="!hit">
+	  <img src="http://4.bp.blogspot.com/-FMcYzUKJACs/TbFRVO74Q0I/AAAAAAAAAMU/z1W-wEuWchk/s1600/MissedTarget.jpg" />
+	</p>
+	<p style="width:100%;margin:15px 0px 0 150px;">
+	  <span class="btn btn-primary" (click)="resetShotingForm()"> Feel free to restart !!!</span>
+	</p>
+</div>

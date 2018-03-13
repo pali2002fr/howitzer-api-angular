@@ -1,0 +1,128 @@
+<div class="container">
+	<div class="row">
+		<div class="span5"></div>
+		<div class="span2">
+	        <h3 class="form-signin-heading">Profile</h3>
+	        <form novalidate [formGroup]="fullnameForm" (ngSubmit)="updateFullname()">
+		        <fieldset formGroupName="fullname">
+		        	<legend>Fullname</legend>
+    				<div class="control-group" [ngClass]="{
+    					'error': firstname.invalid && (firstname.dirty || firstname.touched),
+    					'success': firstname.valid && (firstname.dirty || firstname.touched)
+    				}">
+    					<label for="firstname" class="control-label">First Name</label>
+    					<div class="controls">
+		        			<input type="text" class="input-block-level" id="firstname" formControlName="firstname" required>
+		        		</div>
+		        		<span class="help-inline" 
+		        		*ngIf="firstname.errors && (firstname.dirty || firstname.touched)">
+		        			<p *ngIf="firstname.errors.required">Firstname is required</p>
+		        		</span>
+		        	</div>	
+		        	<div class="control-group" [ngClass]="{
+    					'error': lastname.invalid && (lastname.dirty || lastname.touched),
+    					'success': lastname.valid && (lastname.dirty || lastname.touched)
+    				}">
+		        		<label for="lastname" class="control-label">Last Name</label>
+		        		<div class="controls">
+		        			<input type="text" class="input-block-level" id="lastname" formControlName="lastname" required>
+		        		</div>
+		        		<span class="help-inline" 
+		        		*ngIf="lastname.errors && (lastname.dirty || lastname.touched)">
+		        			<p *ngIf="lastname.errors.required">Lastname is required</p>
+		        		</span>	
+		        	</div>
+		        	<div class="control-group">
+			        	<button class="btn btn-medium btn-primary" type="submit" [disabled]="!fullnameForm.valid">Update</button>
+
+			        </div>
+		        </fieldset>
+	        </form>
+	        <form novalidate [formGroup]="usernameForm" (ngSubmit)="updateUsername()">
+		        <fieldset formGroupName="username">
+		        	<legend>Username</legend>
+    				<div class="control-group" 
+    					[ngClass]="{
+    					'error': username.invalid  && (username.dirty || username.touched),
+    					'success': username.valid && (username.dirty || username.touched)
+    				}">
+    					<label for="username" class="control-label">Username</label>
+    					<div class="controls">
+		        			<input type="text" class="input-block-level" id="username" formControlName="username" required>
+		        		</div>
+		        		<span class="help-inline" 
+		        		*ngIf="username.errors && (username.dirty || username.touched)">
+		        			<p *ngIf="username.errors.required">Username is required</p>
+		        			<p *ngIf="username.errors && username.errors.alreadyexists">This username is already taken!</p>
+		        		</span>	
+		        	</div>
+		        	<div class="control-group">
+			        	<button class="btn btn-medium btn-primary" type="submit" [disabled]="!usernameForm.valid">Update</button>
+			        </div>
+		        </fieldset>
+		    </form>
+		    <form novalidate [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+		        <fieldset formGroupName="password">
+		        	<legend>Password</legend>
+		        	<div class="control-group" [ngClass]="{
+	    				'error': oldpassword.invalid && (oldpassword.dirty || oldpassword.touched),
+	    				'success': oldpassword.valid && (oldpassword.dirty || oldpassword.touched)
+	    			}">
+		        		<label for="oldpassword" class="control-label">Old Password</label>
+		        		<div class="controls">
+		        			<input type="password" class="input-block-level" id="oldpassword" formControlName="oldpassword" required>
+		        		</div>
+		        		<span class="help-inline" 
+			        		*ngIf="oldpassword.errors && (oldpassword.dirty || oldpassword.touched)">
+		        			<p *ngIf="oldpassword.errors.required">Old password is required</p>
+		        			<p *ngIf="oldpassword.errors.minlength">Old password is minimum {{oldpassword.errors.minlength.requiredLength}} characters</p>
+		        			<p *ngIf="oldpassword.errors.maxlength">Old password is maximum {{oldpassword.errors.maxlength.requiredLength}} charaters</p>
+			        	</span>	
+		        	</div>
+		        	<div class="control-group" [ngClass]="{
+	    				'error': newpassword.invalid && (newpassword.dirty || newpassword.touched),
+	    				'success': newpassword.valid && (newpassword.dirty || newpassword.touched)
+	    			}">
+		        		<label for="newpassword" class="control-label">New Password</label>
+		        		<div class="controls">
+		        			<input type="password" class="input-block-level" id="newpassword" formControlName="newpassword" required>
+		        		</div>
+		        		<span class="help-inline" 
+			        		*ngIf="newpassword.errors && (newpassword.dirty || newpassword.touched)">
+		        			<p *ngIf="newpassword.errors.required">New password is required</p>
+		        			<p *ngIf="newpassword.errors.minlength">New password is minimum {{newpassword.errors.minlength.requiredLength}} characters</p>
+		        			<p *ngIf="newpassword.errors.maxlength">New password is maximum {{newpassword.errors.maxlength.requiredLength}} charaters</p>
+			        	</span>
+		        	</div>
+		        	<div class="control-group">
+			        	<button class="btn btn-medium btn-primary" type="submit" [disabled]="!passwordForm.valid">Update</button>
+			        </div>
+		        </fieldset>
+		    </form>   
+		    
+	        <form novalidate [formGroup]="deleteaccountForm" (ngSubmit)="deleteAccount()">
+		        <fieldset formGroupName="deleteaccount">
+		        	<legend>Delete Account</legend>
+		        	<div class="control-group" [ngClass]="{
+	    				'error': iagree.invalid && (iagree.dirty || iagree.touched),
+	    				'success': iagree.valid && (iagree.dirty || iagree.touched)
+	    			}">
+		        		<label class="checkbox">
+					      	<input type="checkbox" formControlName="iagree" required> I agree to delete this account
+					    </label>
+		        		<span class="help-inline" 
+			        		*ngIf="iagree.errors && (iagree.dirty || iagree.touched)">
+		        			<p *ngIf="iagree.errors.required">Please agree to delete this account</p>
+			        	</span>	
+		        	</div>
+		        	<div class="control-group">
+			        	<button class="btn btn-medium btn-primary" type="submit" [disabled]="!deleteaccountForm.valid">Delete
+			        	</button>
+			        </div>
+		        </fieldset>
+		    </form>
+		    
+	    </div>
+	    <div class="span5"></div>
+	</div>    
+</div>

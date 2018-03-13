@@ -1,0 +1,36 @@
+<table class="table table-hover">
+	<thead>
+	    <tr>
+	      	<th>#</th>
+	      	<th>Howitzer</th>
+	      	<th>Target</th>
+	      	<th>Distance</th>
+	      	<th>Speed</th>
+	      	<th>Angle</th>
+	      	<th>Hit</th>
+	      	<th>Impact</th>
+	      	<th>Created At</th>
+	    </tr>
+  </thead>
+  <tbody *ngIf="results?.length > 0; else elseBlock;">
+  	<tr *ngFor="let result of results">
+  		<td>{{result.id}}</td>
+  		<td>{{result.shot.howitzer.name}}</td>
+  		<td>{{result.shot.target.size}}</td>
+  		<td>{{result.shot.distance.distance}}</td>
+  		<td>{{result.shot.speed.speed}}</td>
+  		<td>{{result.shot.angle.angle}}</td>
+  		<td>{{result.hit == 1 ? 'YES' : 'NO'}}</td>
+  		<td>{{result.impact}}</td>
+  		<td>{{result.shot.created_date}}</td>
+  </tbody>
+</table>
+<ng-template #elseBlock>
+	<tbody>
+		<tr>
+			<td colspan="9">
+				Empty!
+			</td>
+		</tr>	
+	</tbody>
+</ng-template>

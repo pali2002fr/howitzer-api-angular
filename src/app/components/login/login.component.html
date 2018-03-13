@@ -1,0 +1,50 @@
+<div class="container">
+	<div class="row">
+		<div class="span5"></div>
+		<div class="span2">
+		    <form novalidate [formGroup]="loginForm" class="form-signin" (ngSubmit)="login()">
+		        <h3 class="form-signin-heading">Please sign in</h3>
+		       	<div class="control-group" [ngClass]="{
+    				'error': username.invalid  && (username.dirty || username.touched),
+    				'success': username.valid && (username.dirty || username.touched)
+    			}">
+					<label for="username" class="control-label">Username</label>
+					<div class="controls">
+	        			<input type="text" class="input-block-level" id="username" formControlName="username" required>
+	        		</div>
+	        		<span class="help-inline" 
+	        		*ngIf="username.errors && (username.dirty || username.touched)">
+	        			<p *ngIf="username.errors.required">Username is required</p>
+	        		</span>	
+	        	</div>
+	        	<div class="control-group" [ngClass]="{
+    				'error': password.invalid && (password.dirty || password.touched),
+    				'success': password.valid && (password.dirty || password.touched)
+    			}">
+	        		<label for="password" class="control-label">Password</label>
+	        		<div class="controls">
+	        			<input type="password" class="input-block-level" id="password" formControlName="password" required>
+	        		</div>
+	        		<span class="help-inline" 
+		        		*ngIf="password.errors && (password.dirty || password.touched)">
+	        			<p *ngIf="password.errors.required">Password is required</p>
+	        			<p *ngIf="password.errors.minlength">Password is minimum {{password.errors.minlength.requiredLength}} characters</p>
+	        			<p *ngIf="password.errors.maxlength">Password is maximum {{password.errors.maxlength.requiredLength}} charaters</p>
+		        	</span>	
+	        	</div>	
+		        <div class="control-group text-right">	
+		        	<button class="btn btn-block btn-primary" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+		        </div>
+		    </form>
+	    </div>
+	    <div class="span5" *ngIf="error" class="alert alert-danger">{{error}}</div>
+	</div>
+	<div class="row">
+		<div class="span5"></div>
+		<div class="span2 text-left">
+	    	<hr>
+	    	<a [routerLink]="['/register']" class="btn btn-block btn-success">Register</a>
+	    </div>
+		<div class="span5"></div>
+	</div>
+</div>

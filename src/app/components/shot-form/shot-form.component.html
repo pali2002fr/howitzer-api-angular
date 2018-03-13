@@ -1,0 +1,89 @@
+<div id="shot_form" module-id="shot-form" *ngIf="!shotId">
+  	<h2 class="form-signin-heading">Ready ???</h2>
+  	<span>{{result}}</span>
+  	<form novalidate [formGroup]="shotForm" class="form-shot" (ngSubmit)="shot()">
+		<!-- Howitzer -->
+		<div class="control-group" [ngClass]="{
+			'error': weight.invalid  && (weight.dirty || weight.touched),
+			'success': weight.valid && (weight.dirty || weight.touched)
+		}">
+			<label class="control-label">Weight of Howitzer :</label>
+			<select formControlName="weight" required>
+			  	<option *ngFor="let howitzer of howitzers" [value]="howitzer.id">{{howitzer?.weight}}</option>
+			</select>
+			<span class="help-inline" 
+			*ngIf="weight.errors && (weight.dirty || weight.touched)">
+				<p *ngIf="weight.errors.required">Weight is required</p>
+			</span>		
+		</div>
+		<!-- Howitzer -->
+
+		<!-- Distance -->
+		<div class="control-group" [ngClass]="{
+			'error': distance.invalid  && (distance.dirty || distance.touched),
+			'success': distance.valid && (distance.dirty || distance.touched)
+		}">
+			<label class="control-label" for="distance">Distance to the target :</label>
+			<select formControlName="distance" required>
+			  	<option *ngFor="let distance of distances" [value]="distance.id">{{distance?.distance}}</option>
+			</select>
+			<span class="help-inline" 
+			*ngIf="distance.errors && (distance.dirty || distance.touched)">
+				<p *ngIf="distance.errors.required">Distance is required</p>
+			</span>	
+		</div>
+		<!-- Distance -->		
+
+		<!-- Size -->
+		<div class="control-group" [ngClass]="{
+			'error': target.invalid  && (target.dirty || target.touched),
+			'success': target.valid && (target.dirty || target.touched)
+		}">
+			<label class="control-label">Size of the target :</label>
+			<select formControlName="target" required>
+			  	<option *ngFor="let target of targets" [value]="target.id">{{target?.size}}</option>
+			</select>
+			<span class="help-inline" 
+			*ngIf="target.errors && (target.dirty || target.touched)">
+				<p *ngIf="target.errors.required">Target is required</p>
+			</span>	
+		</div>
+		<!-- Size --> 	
+
+		<!-- Speed -->
+		<div class="control-group" [ngClass]="{
+			'error': speed.invalid  && (speed.dirty || speed.touched),
+			'success': speed.valid && (speed.dirty || speed.touched)
+		}">
+			<label class="control-label" for="speed">Muzzle Speed :</label>
+			<select formControlName="speed" required>
+			  	<option *ngFor="let speed of speeds" [value]="speed.id">{{speed?.speed}}</option>
+			</select>
+			<span class="help-inline" 
+			*ngIf="speed.errors && (speed.dirty || speed.touched)">
+				<p *ngIf="speed.errors.required">Speed is required</p>
+			</span>	
+		</div>
+		<!-- Speed --> 	
+
+		<!-- Angle of Shot -->
+		<div class="control-group" [ngClass]="{
+			'error': angle.invalid  && (angle.dirty || angle.touched),
+			'success': angle.valid && (angle.dirty || angle.touched)
+		}">
+			<label class="control-label">Angle of Shot :</label>
+			<select formControlName="angle" required>
+			  	<option *ngFor="let angle of angles" [value]="angle.id">{{angle?.angle}}</option>
+			</select>
+			<span class="help-inline" 
+			*ngIf="angle.errors && (angle.dirty || angle.touched)">
+				<p *ngIf="angle.errors.required">Angle is required</p>
+			</span>	
+		</div>
+		<!-- Angle of Shot -->
+		<div class="control-group text-left">
+			<button class="btn btn-large btn-primary" type="submit" [disabled]="!shotForm.valid">Fire</button>
+		</div>
+	</form>
+</div>
+<app-shot-result *ngIf="shotId"></app-shot-result>

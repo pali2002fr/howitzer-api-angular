@@ -1,0 +1,21 @@
+<div module-id="best-shotters">
+	<h4>Top {{limit}} most accurate users</h4>
+	<table class="table table-condensed">
+		<thead>
+		  <tr>
+		    <th>#</th>
+		    <th>User</th>
+		    <th>Shots</th>
+		    <th>AVG(close to target)</th>
+		  </tr>
+		</thead>
+		<tbody *ngIf="bestShotters?.length > 0">
+		  <tr *ngFor = "let shotter of bestShotters; let i = index">
+		    <td>{{i + 1}}</td>
+		    <td>{{shotter?.user?.username}}</td>
+		    <td>{{shotter?.shots}}</td>
+		    <td>{{shotter?.avg_closed_target}}</td>
+		  </tr>
+		</tbody>
+	</table>
+</div>
