@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  envName: 'dev',
+  apiEndpoint: 'http://localhost:8888/howitzer-api-3/public/',
+  whitelistedDomains: ['localhost:8888']
 };

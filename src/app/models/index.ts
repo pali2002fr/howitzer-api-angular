@@ -8,3 +8,7 @@ export * from './user';
 export * from './shot';
 export * from './trajectory';
 export * from './result';
+export * from './total-users';
+export * from './total-shots';
+export * from './avg-shots';
+export * from './total-shots-by-user';

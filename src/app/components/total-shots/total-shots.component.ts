@@ -5,7 +5,7 @@ import {
   SharedService 
 } from '../../services/index';
 
-import { } from '../../models/index';
+import { totalShots } from '../../models/index';
 
 @Component({
   	selector: 'app-total-shots',
@@ -13,7 +13,7 @@ import { } from '../../models/index';
   	styleUrls: ['./total-shots.component.css']
 })
 export class TotalShotsComponent implements OnInit {
-    totalShots: number;
+    totalShots: totalShots;
 
   	constructor( 
       private _shotService: ShotService, 

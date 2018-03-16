@@ -5,7 +5,7 @@ import {
   SharedService
 } from '../../services/index';
 
-import { } from '../../models/index';
+import { totalUsers } from '../../models/index';
 
 @Component({
   selector: 'app-total-users',
@@ -13,7 +13,7 @@ import { } from '../../models/index';
   styleUrls: ['./total-users.component.css']
 })
 export class TotalUsersComponent implements OnInit {
-	totalUsers: number;
+	totalUsers: totalUsers;
 
 	constructor( 
     private _userService: UserService,

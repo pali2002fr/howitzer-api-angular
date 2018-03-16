@@ -13,7 +13,11 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 import { 
   Shot,
-  Shotter
+  Shotter,
+  totalUsers,
+  totalShots,
+  avgShots,
+  totalShotsByUser
  } from '../../models/index';
 
 import { 
@@ -49,16 +53,16 @@ export class ShotFormComponent implements OnInit {
     public  shotId: number;
     public  result;
     public  resultID: number;
-    public  totalShotsByUser: number;
-    public  totalShots: number;
-    public  totalUsers: number;
-    public  avgShots: number;
+    public  totalShotsByUser: totalShotsByUser;
+    public  totalShots: totalShots;
+    public  totalUsers: totalUsers;
+    public  avgShots: avgShots;
     public  bestShotters: Shotter[];
     public  userId: number;
-    public  refreshTotalShotsByUser: number;
-    public  refreshTotalShots: number;
-    public  refreshTotalUsers: number;
-    public  refreshAvgShots: number;
+    public  refreshTotalShotsByUser: totalShotsByUser;
+    public  refreshTotalShots: totalShots;
+    public  refreshTotalUsers: totalUsers;
+    public  refreshAvgShots: avgShots;
     public  refreshBestShotters: Shotter[];
 
     shotForm: FormGroup;
@@ -163,7 +167,7 @@ export class ShotFormComponent implements OnInit {
         .subscribe(
           data => that.refreshTotalUsers = data,
           error => console.log(error),
-          () => this.updateTotalShots(this.refreshTotalUsers)
+          () => this.updateTotalUsers(this.refreshTotalUsers)
       );
     }
 
@@ -197,16 +201,20 @@ export class ShotFormComponent implements OnInit {
       );
     }
 
-    updateAvgShots(avg: number): void {
+    updateAvgShots(avg: avgShots): void {
       this._sharedService.changeAvgShots(avg);
     }
 
-    updateTotalShotsByUser(total: number): void {
+    updateTotalShotsByUser(total: totalShotsByUser): void {
       this._sharedService.changeTotalShotsByUser(total);
     }
 
-    updateTotalShots(total: number): void {
+    updateTotalShots(total: totalShots): void {
       this._sharedService.changeTotalShots(total);
+    }
+
+    updateTotalUsers(total: totalUsers): void {
+      this._sharedService.changeTotalUsers(total);
     }
 
     updateBestShotters(bestShotters: Shotter[]): void {

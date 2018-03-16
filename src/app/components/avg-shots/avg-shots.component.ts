@@ -5,13 +5,17 @@ import {
 	SharedService
 } from '../../services/index';
 
+import { 
+	avgShots
+} from '../../models/index';
+
 @Component({
 	selector: 'app-avg-shots',
 	templateUrl: './avg-shots.component.html',
 	styleUrls: ['./avg-shots.component.css']
 })
 export class AvgShotsComponent implements OnInit {
-  	public 	avgShots: number = 0;
+  	public 	avgShots: avgShots;
 
 	constructor( 
 		private _shotService: ShotService,

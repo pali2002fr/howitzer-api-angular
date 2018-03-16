@@ -7,7 +7,11 @@ import {
   SharedService,
   AuthService
 } from '../../services/index';
-import { User } from '../../models/index';
+
+import { 
+  User,
+  totalShotsByUser
+} from '../../models/index';
 
 @Component({
   selector: 'app-total-shots-by-user',
@@ -17,7 +21,7 @@ import { User } from '../../models/index';
 export class TotalShotsByUserComponent implements OnInit {
   userId: number;
   user: User;
-  totalShotsByUser: number;
+  totalShotsByUser: totalShotsByUser;
 
 	constructor( 
     private _shotService: ShotService,

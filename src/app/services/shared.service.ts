@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { Shotter } from '../models/index';
+import { 
+  Shotter, 
+  totalUsers,
+  totalShots,
+  avgShots,
+  totalShotsByUser
+} from '../models/index';
 
 import {  } from '../services/index';
 
@@ -9,16 +15,16 @@ import {  } from '../services/index';
 
 export class SharedService {
 
-  private totalShotsByUserSource = new BehaviorSubject<number>(0);
+  private totalShotsByUserSource = new BehaviorSubject<totalShotsByUser>({'total': 0});
   currentTotalShotsByUser = this.totalShotsByUserSource.asObservable();
 
-  private totalShotsSource = new BehaviorSubject<number>(0);
+  private totalShotsSource = new BehaviorSubject<totalShots>({'total': 0});
   currentTotalShots = this.totalShotsSource.asObservable();
 
-  private totalUsersSource = new BehaviorSubject<number>(0);
+  private totalUsersSource = new BehaviorSubject<totalUsers>({'total': 0});
   currentTotalUsers = this.totalUsersSource.asObservable();
 
-  private avgShotsSource = new BehaviorSubject<number>(0);
+  private avgShotsSource = new BehaviorSubject<avgShots>({'avg': 0});
   currentAvgShots = this.avgShotsSource.asObservable();
 
   private bestShottersSource = new BehaviorSubject<Shotter[]>(null);
@@ -32,19 +38,19 @@ export class SharedService {
 
   constructor() { }
 
-  changeTotalShotsByUser(total: number) {
+  changeTotalShotsByUser(total: totalShotsByUser) {
     this.totalShotsByUserSource.next(total)
   }
 
-  changeTotalShots(total: number) {
+  changeTotalShots(total: totalShots) {
     this.totalShotsSource.next(total)
   }
 
-  changeTotalUsers(total: number) {
+  changeTotalUsers(total: totalUsers) {
     this.totalUsersSource.next(total)
   }
 
-  changeAvgShots(avg: number) {
+  changeAvgShots(avg: avgShots) {
     this.avgShotsSource.next(avg)
   }
 

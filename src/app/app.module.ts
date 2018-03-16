@@ -2,11 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 
 import { routing } from './app.routes';
+
+export function gettoken (){
+  return localStorage.getItem('currentUser');
+};
+
+const jwtConf: JwtModuleOptions = {
+  config: {
+    tokenGetter: gettoken,
+    whitelistedDomains: environment.whitelistedDomains
+  }
+};
 
 import {
   TotalShotsComponent,
@@ -67,14 +79,7 @@ import {
     HttpClientModule,
     ReactiveFormsModule,
     routing,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('currentUser');
-        },
-        whitelistedDomains: ['localhost:8888']
-      }
-    })
+    JwtModule.forRoot(jwtConf)
   ],
   providers: [
     AlertService,

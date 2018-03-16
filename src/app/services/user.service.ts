@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { User } from '../models/index';
+import { 
+  User, 
+  totalUsers
+} from '../models/index';
 
 @Injectable()
 export class UserService {
-	private _url: string = 'http://localhost:8888/howitzer-api-3/public';
+	private _url: string = environment.apiEndpoint;
 	
   constructor(
     private http: HttpClient
@@ -46,8 +50,8 @@ export class UserService {
     return this.http.delete<boolean>(this._url + '/users/' + id);
   }
 
-	getTotalUsers(): Observable<number> {
-		return this.http.get<number>(this._url + '/total-users');
+	getTotalUsers(): Observable<totalUsers> {
+		return this.http.get<totalUsers>(this._url + '/total-users');
 	}
 
   userAlreadyExists(username: string): Observable<boolean> {

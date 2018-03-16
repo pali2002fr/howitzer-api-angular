@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { 
 	HttpClient,
@@ -21,7 +22,7 @@ const httpOptions = {
 @Injectable()
 export class AuthService {
     public _token: string;
-    private _url: string = 'http://localhost:8888/howitzer-api-3/public';
+    private _url: string = environment.apiEndpoint;
  
     constructor(
     	private http: HttpClient,
